@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use Carbon\Carbon;
 use Illuminate\Contracts\Database\Query\Builder;
 use Livewire\Component;
 
@@ -14,35 +13,18 @@ use App\Models\{
 
 class GameComponent extends Component
 {
-    public $date;
-    public $gamePlayers = [];
-
     public function render()
     {
-        $games = Game::with(['gamePlayers' => function (Builder $query) {
-            $query->orderBy('place');
-        }])->orderByDesc('date')->get();
-        $players = Player::all();
-        $factions = Faction::with('factionLeaders')->get();
+        $games = Game::with([
+            'gamePlayers' => function (Builder $query) {
+                $query->orderBy('place');
+            },
+            'gamePlayers.factionLeader',
+            'gamePlayers.player',
+            'gamePlayers.factionLeader.faction'
+        ])->orderByDesc('date')->get();
 
-        return view('livewire.game-component', compact('games', 'players', 'factions'));
-    }
-
-    public function create()
-    {
-        $game = Game::create([
-            'date' => $this->date ?? Carbon::now()->format('Y-m-d'),
-        ]);
-
-        foreach ($this->gamePlayers as $player) {
-            $game->gamePlayers()->create([
-                'place' => $player['place'],
-                'faction_leader_id' => $player['factionLeaderId'],
-                'player_id' => $player['playerId'],
-            ]);
-        }
-
-        $this->reset();
+        return view('livewire.game-component', compact('games'));
     }
 
     public function delete($id)
@@ -50,19 +32,8 @@ class GameComponent extends Component
         Game::findOrFail($id)->delete();
     }
 
-    public function addGamePlayer()
+    public function edit($id)
     {
-        $nextPlace = count($this->gamePlayers) + 1;
-        $this->gamePlayers[] = [
-            'place' => $nextPlace,
-            'factionLeaderId' => null,
-            'playerId' => null,
-        ];
-    }
-
-    public function removeGamePlayer($index)
-    {
-        unset($this->gamePlayers[$index]);
-        $this->gamePlayers = array_values($this->gamePlayers);
+        return redirect()->route('games.edit', ['game' => $id]);
     }
 }

@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 use App\Livewire\{
     FactionComponent,
     GameComponent,
+    GameCreate,
+    GameEdit,
     PlayerComponent
 };
 
@@ -26,3 +28,5 @@ Route::get('/', function () {
 Route::get('/players', PlayerComponent::class)->name('players');
 Route::get('/factions', FactionComponent::class)->name('factions');
 Route::get('/games', GameComponent::class)->name('games');
+Route::get('/games/create', GameCreate::class)->name('games.create');
+Route::get('/games/edit/{game}', GameEdit::class)->name('games.edit');

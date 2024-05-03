@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Str;
 
-$DATABASE_URL = parse_url(getenv("DATABASE_URL"));
+$DB_CONNECTION = env('DB_CONNECTION', 'mysql');
+$DATABASE_URL = parse_url(getenv('DATABASE_URL'));
+$IS_HEROKU = $DB_CONNECTION == 'heroku';
 
 return [
 
@@ -17,7 +19,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => $DB_CONNECTION,
 
     /*
     |--------------------------------------------------------------------------
@@ -97,11 +99,11 @@ return [
 
         'heroku' => [
             'driver' => 'pgsql',
-            'host' => $DATABASE_URL["host"],
-            'port' => $DATABASE_URL["port"],
-            'database' => ltrim($DATABASE_URL["path"], "/"),
-            'username' => $DATABASE_URL["user"],
-            'password' => $DATABASE_URL["pass"],
+            'host' => $IS_HEROKU ? $DATABASE_URL['host'] : "",
+            'port' => $IS_HEROKU ? $DATABASE_URL['port'] : "",
+            'database' => $IS_HEROKU ? ltrim($DATABASE_URL['path'], '/') : "",
+            'username' => $IS_HEROKU ? $DATABASE_URL['user'] : "",
+            'password' => $IS_HEROKU ? $DATABASE_URL['pass'] : "",
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
