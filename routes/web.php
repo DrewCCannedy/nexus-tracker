@@ -7,7 +7,8 @@ use App\Livewire\{
     GameComponent,
     GameCreate,
     GameEdit,
-    PlayerComponent
+    PlayerComponent,
+    StatsComponent
 };
 
 /*
@@ -30,3 +31,4 @@ Route::get('/factions', FactionComponent::class)->name('factions');
 Route::get('/games', GameComponent::class)->name('games');
 Route::get('/games/create', GameCreate::class)->name('games.create');
 Route::get('/games/edit/{game}', GameEdit::class)->name('games.edit');
+Route::get('/stats', StatsComponent::class)->name('stats');

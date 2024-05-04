@@ -17,6 +17,9 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
+                        <a class="nav-link" href="{{ route('stats') }}">Stats</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="{{ route('games') }}">Games</a>
                     </li>
                     <li class="nav-item">
@@ -34,7 +37,9 @@
         {{ $slot }}
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     @livewireScripts
+    @livewireChartsScripts
 </body>
 </html>
