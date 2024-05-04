@@ -102,7 +102,8 @@ class StatsComponent extends Component
     public function updateChart()
     {
         $chart = (new ColumnChartModel())
-            ->setTitle('Wins');
+            ->darkMode()
+            ->setTitle($this->moreChartType);
 
         $models = [];
         switch($this->chartType) {
