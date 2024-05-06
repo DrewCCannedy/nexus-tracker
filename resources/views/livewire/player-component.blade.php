@@ -1,5 +1,7 @@
 <div class="card">
     <div class="card-body">
+        <h5 class="card-title">Players</h5>
+        <hr>
         <div class="mb-3">
             <input type="text" wire:model="name" class="form-control" placeholder="Enter player name">
         </div>

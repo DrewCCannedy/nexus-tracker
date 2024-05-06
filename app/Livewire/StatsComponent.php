@@ -96,7 +96,7 @@ class StatsComponent extends Component
 
     public function render()
     {
-        return view('livewire.wins-component', ['chart' => $this->updateChart()]);
+        return view('livewire.stats-component', ['chart' => $this->updateChart()]);
     }
 
     public function updateChart()
