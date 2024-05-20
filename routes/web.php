@@ -23,7 +23,7 @@ use App\Livewire\{
 */
 
 Route::get('/', function () {
-    return redirect()->route('games');
+    return redirect()->route('stats');
 });
 
 Route::get('/players', PlayerComponent::class)->name('players');

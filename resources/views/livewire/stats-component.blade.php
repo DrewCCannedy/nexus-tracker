@@ -20,6 +20,13 @@
                     @endforeach
                 </select>
             </div>
+            <div class="col-auto">
+                <select id="player-picker" wire:model="selectedPlayer" wire:change="updateChart" class="form-control">
+                    @foreach($playerNames as $player)
+                        <option value="{{ $player }}">{{ $player }}</option>
+                    @endforeach
+                </select>
+            </div>
         </div>
         <div class="m-4" style="height: 32rem;">
             <livewire:livewire-column-chart
