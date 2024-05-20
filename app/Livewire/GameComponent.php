@@ -3,16 +3,23 @@
 namespace App\Livewire;
 
 use Illuminate\Contracts\Database\Query\Builder;
-use Livewire\Component;
 
 use App\Models\{
     Faction,
     Game,
     Player
 };
+use Livewire\{
+    Component,
+    WithPagination
+};
 
 class GameComponent extends Component
 {
+    use WithPagination;
+
+    protected $paginationTheme = 'bootstrap';
+
     public function render()
     {
         $games = Game::with([
@@ -22,7 +29,7 @@ class GameComponent extends Component
             'gamePlayers.factionLeader',
             'gamePlayers.player',
             'gamePlayers.factionLeader.faction'
-        ])->orderByDesc('date')->get();
+        ])->orderByDesc('date')->paginate(10);
 
         return view('livewire.game-component', compact('games'));
     }
