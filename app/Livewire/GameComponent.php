@@ -29,7 +29,7 @@ class GameComponent extends Component
             'gamePlayers.factionLeader',
             'gamePlayers.player',
             'gamePlayers.factionLeader.faction'
-        ])->orderByDesc('date')->paginate(10);
+        ])->orderByDesc('date')->paginate(3);
 
         return view('livewire.game-component', compact('games'));
     }

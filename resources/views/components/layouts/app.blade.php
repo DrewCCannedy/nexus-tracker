@@ -49,7 +49,7 @@
         </div>
     </nav>
     <div class="bg-image">
-        <div class="container pt-5">
+        <div class="container pt-3">
             {{ $slot }}
         </div>
     </div>

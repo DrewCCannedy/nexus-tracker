@@ -2,8 +2,8 @@
     <div class="card-body">
         <h5 class="card-title">Games</h5>
         <hr>
-        <a href="{{ route('games.create') }}" class="btn btn-primary my-2">New Game</a>
-        <table class="table mt-3">
+        <a href="{{ route('games.create') }}" class="btn btn-primary">New Game</a>
+        <table class="table mt-2">
             <thead>
                 <tr>
                     <th>Date</th>
@@ -16,7 +16,7 @@
             <tbody>
                 @foreach($games as $game)
                     <tr>
-                        <td rowspan="{{ count($game->gamePlayers) }}">{{ $game->date }}</td>
+                        <td rowspan="{{ count($game->gamePlayers) }}">{{ \Carbon\Carbon::parse($game->date)->format('F jS - Y') }}</td>
                         <td rowspan="{{ count($game->gamePlayers) }}">
                             <button wire:click="edit({{ $game->id }})" class="btn btn-warning">Edit</button>
                             <button wire:click="delete({{ $game->id }})" class="btn btn-danger">Delete</button>

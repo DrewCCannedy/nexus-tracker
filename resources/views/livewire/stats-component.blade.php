@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-body">
-        <h5 class="card-title">Factions</h5>
+        <h5 class="card-title">Stats</h5>
         <hr>
         <div class="row mt-2">
             <div class="col-auto">
