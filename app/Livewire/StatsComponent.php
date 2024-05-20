@@ -120,6 +120,7 @@ class StatsComponent extends Component
                         }
                     })
                     ->groupBy('players.id')
+                    ->orderBy('players.name')
                     ->selectRaw('COUNT(game_players.place) as game_players_count')
                     ->get();
                 break;
@@ -140,6 +141,7 @@ class StatsComponent extends Component
                     })
                     ->groupBy('factions.id')
                     ->selectRaw('COUNT(game_players.place) as game_players_count')
+                    ->orderBy('factions.id')
                     ->get();
                 break;
             case "Leader":
@@ -157,6 +159,7 @@ class StatsComponent extends Component
                         }
                     })
                     ->groupBy('faction_leaders.id')
+                    ->orderBy('faction_leaders.id')
                     ->selectRaw('COUNT(game_players.place) as game_players_count')
                     ->get();
                 break;
